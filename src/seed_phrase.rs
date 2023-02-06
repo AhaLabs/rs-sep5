@@ -1,18 +1,18 @@
 use std::str::FromStr;
 
-use stellar_strkey::{StrkeyPrivateKeyEd25519, StrkeyPublicKeyEd25519};
+use stellar_strkey::ed25519::{PrivateKey, PublicKey};
 
 use crate::error::Error;
 
 pub struct KeyPair(slip10::Key);
 
 impl KeyPair {
-    pub fn public(&self) -> StrkeyPublicKeyEd25519 {
-        StrkeyPublicKeyEd25519(self.0.public_key()[1..].try_into().unwrap())
+    pub fn public(&self) -> PublicKey {
+        PublicKey(self.0.public_key()[1..].try_into().unwrap())
     }
 
-    pub fn private(&self) -> StrkeyPrivateKeyEd25519 {
-        StrkeyPrivateKeyEd25519(self.0.key)
+    pub fn private(&self) -> PrivateKey {
+        PrivateKey(self.0.key)
     }
 }
 

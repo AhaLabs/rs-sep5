@@ -8,7 +8,7 @@ impl ToLowerHex for &[u8; 32] {
     fn to_lower_hex(&self) -> String {
         let mut res = String::with_capacity(self.len());
         for b in *self {
-            res.push_str(&format!("{:02x}", b));
+            res.push_str(&format!("{b:02x}"));
         }
         res
     }
